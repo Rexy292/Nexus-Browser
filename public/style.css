@@ -1,0 +1,334 @@
+:root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-hover: #334155;
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --tab-height: 32px;
+    --toolbar-height: 40px;
+    --bookmarks-height: 32px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.browser-chrome {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tab Bar */
+.tab-bar {
+    height: var(--tab-height);
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 4px;
+}
+
+.tab {
+    height: 28px;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 8px;
+    min-width: 180px;
+    max-width: 240px;
+    font-size: 12px;
+}
+
+.tab.active {
+    background: var(--bg-hover);
+    border-bottom: 2px solid var(--accent);
+}
+
+.tab .material-icons {
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.tab .close-tab {
+    margin-left: auto;
+    padding: 2px;
+    border-radius: 50%;
+}
+
+.tab .close-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.new-tab {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.new-tab:hover {
+    background: var(--bg-hover);
+}
+
+/* Toolbar */
+.toolbar {
+    height: var(--toolbar-height);
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 8px;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: var(--bg-hover);
+}
+
+.address-bar {
+    flex: 1;
+    height: 32px;
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.address-bar:focus-within {
+    border-color: var(--accent);
+    background: var(--bg-hover);
+}
+
+.address-bar .material-icons {
+    color: var(--text-secondary);
+    font-size: 20px;
+}
+
+.address-bar input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.address-bar input::placeholder {
+    color: var(--text-secondary);
+}
+
+.browser-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.browser-actions .material-icons {
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.browser-actions .material-icons:hover {
+    background: var(--bg-hover);
+}
+
+/* Bookmarks Bar */
+.bookmarks-bar {
+    height: var(--bookmarks-height);
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 8px;
+}
+
+.bookmark {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.bookmark:hover {
+    background: var(--bg-hover);
+}
+
+.bookmark img {
+    width: 16px;
+    height: 16px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+    background: var(--bg-primary);
+}
+
+.logo {
+    margin-bottom: 32px;
+}
+
+.logo h1 {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.center-search {
+    width: 584px;
+    max-width: 90%;
+    margin-bottom: 32px;
+}
+
+.center-search .search-container {
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.center-search .search-container:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-color);
+}
+
+.center-search .search-container:focus-within {
+    background: var(--bg-hover);
+    border-color: var(--accent);
+}
+
+.center-search .material-icons {
+    color: var(--text-secondary);
+    font-size: 20px;
+}
+
+.center-search input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 16px;
+    outline: none;
+}
+
+.center-search input::placeholder {
+    color: var(--text-secondary);
+}
+
+#web {
+    position: fixed;
+    top: calc(var(--tab-height) + var(--toolbar-height) + var(--bookmarks-height));
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(100vh - var(--tab-height) - var(--toolbar-height) - var(--bookmarks-height));
+    border: none;
+    background: var(--bg-primary);
+    display: block;
+}
+
+#new-tab-page {
+    position: fixed;
+    top: calc(var(--tab-height) + var(--toolbar-height) + var(--bookmarks-height));
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+    background: var(--bg-primary);
+}
+
+.tabs {
+    display: flex;
+    cursor: pointer;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f1f1f1;
+    margin-right: 5px;
+    transition: background-color 0.3s;
+}
+
+.tab-button.active {
+    background-color: #ccc;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}

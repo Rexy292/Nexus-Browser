@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <title>Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/chemical.js"></script>
+    <script src="/chemical.components.js"></script>
+</head>
+<body>
+    <div class="browser-chrome">
+        <div class="tab-bar">
+            <div class="tab active">
+                <span class="material-icons">public</span>
+                <span>New Tab</span>
+                <span class="material-icons close-tab">close</span>
+            </div>
+            <div class="new-tab">
+                <span class="material-icons">add</span>
+            </div>
+        </div>
+        
+        <div class="toolbar">
+            <div class="nav-controls" is="chemical-controls">
+                <button onclick="chemicalAction('back', 'web')" class="nav-btn">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <button onclick="chemicalAction('forward', 'web')" class="nav-btn">
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+                <button onclick="chemicalAction('reload', 'web')" class="nav-btn">
+                    <span class="material-icons">refresh</span>
+                </button>
+            </div>
+            
+            <div class="address-bar">
+                <span class="material-icons">search</span>
+                <input type="text" 
+                    spellcheck="false" 
+                    autocomplete="off"
+                    data-frame="web"
+                    data-auto-https 
+                    data-search-engine="https://www.google.com/search?q=%s"
+                    is="chemical-input"
+                    placeholder="Search or type a URL">
+                <span class="material-icons">star_border</span>
+            </div>
+            
+            <div class="browser-actions">
+                <span class="material-icons">extension</span>
+                <span class="material-icons">account_circle</span>
+                <span class="material-icons">more_vert</span>
+            </div>
+        </div>
+
+        <div class="bookmarks-bar">
+            <div class="bookmark">
+                <img src="https://www.google.com/favicon.ico" alt="Google">
+                <span>Google</span>
+            </div>
+            <div class="bookmark">
+                <img src="https://www.youtube.com/favicon.ico" alt="YouTube">
+                <span>YouTube</span>
+            </div>
+            <div class="bookmark">
+                <img src="https://github.com/favicon.ico" alt="GitHub">
+                <span>GitHub</span>
+            </div>
+        </div>
+
+        <div class="main-content" id="new-tab-page">
+            <div class="logo">
+                <h1>Nexus</h1>
+            </div>
+            <div class="center-search">
+                <div class="search-container">
+                    <span class="material-icons">search</span>
+                    <input type="text" 
+                        spellcheck="false" 
+                        autocomplete="off"
+                        data-frame="web"
+                        data-auto-https 
+                        data-search-engine="https://www.google.com/search?q=%s"
+                        is="chemical-input"
+                        placeholder="Search or type a URL">
+                    <span class="material-icons">mic</span>
+                </div>
+            </div>
+        </div>
+        <iframe id="web" data-controls="controls" is="chemical-iframe"></iframe>
+    </div>
+
+    <script>
+        // Hide new tab page when iframe is loaded
+        document.getElementById('web').addEventListener('load', function() {
+            document.getElementById('new-tab-page').style.display = ' none';
+        });
+
+        // Show new tab page when iframe is empty
+        document.getElementById('web').addEventListener('unload', function() {
+            document.getElementById('new-tab-page').style.display = 'flex';
+        });
+
+        // Function to navigate using Chemical.js
+        function chemicalNavigate(frameId, url) {
+            const frame = document.getElementById(frameId);
+            if (frame) {
+                frame.setAttribute('src', '/chemical/' + url);
+                document.getElementById('new-tab-page').style.display = 'none';
+            }
+        }
+
+        // Function to perform actions using Chemical.js
+        function chemicalAction(action, frameId) {
+            const frame = document.getElementById(frameId);
+            if (frame) {
+                // Check if the iframe has a valid URL loaded
+                if (frame.src && frame.src !== 'about:blank') {
+                    switch (action) {
+                        case 'back':
+                            frame.contentWindow.history.back();
+                            break;
+                        case 'forward':
+                            frame.contentWindow.history.forward();
+                            break;
+                        case 'reload':
+                            frame.contentWindow.location.reload();
+                            break;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
